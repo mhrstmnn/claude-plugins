@@ -1,0 +1,33 @@
+{
+  "name": "typescript-lsp",
+  "version": "0.1.0",
+  "description": "TypeScript and JavaScript language server for code intelligence, as the official typescript-lsp, with types in the first answers after a file opens",
+  "author": {
+    "name": "Michael Horstmann"
+  },
+  "homepage": "https://github.com/mhrstmnn/claude-plugins/tree/main/plugins/typescript-lsp",
+  "repository": "https://github.com/mhrstmnn/claude-plugins",
+  "license": "MIT",
+  "keywords": ["typescript", "javascript", "lsp", "language-server"],
+  "lspServers": {
+    "typescript": {
+      "command": "typescript-language-server",
+      "args": ["--stdio"],
+      "extensionToLanguage": {
+        ".ts": "typescript",
+        ".tsx": "typescriptreact",
+        ".js": "javascript",
+        ".jsx": "javascriptreact",
+        ".mts": "typescript",
+        ".cts": "typescript",
+        ".mjs": "javascript",
+        ".cjs": "javascript"
+      },
+      "initializationOptions": {
+        "tsserver": {
+          "useSyntaxServer": "never"
+        }
+      }
+    }
+  }
+}

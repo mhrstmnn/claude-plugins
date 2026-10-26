@@ -19,4 +19,6 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm run check
       - run: pnpm test
+      # typescript-lsp runs the server from PATH, as users install it.
+      - run: npm install -g typescript-language-server typescript@6
       - run: pnpm run test:integration

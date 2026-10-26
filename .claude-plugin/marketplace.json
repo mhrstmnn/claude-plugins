@@ -6,6 +6,12 @@
   "description": "Michael Horstmann's plugins for Claude Code",
   "plugins": [
     {
+      "name": "typescript-lsp",
+      "source": "./plugins/typescript-lsp",
+      "description": "TypeScript and JavaScript language server for code intelligence, as the official typescript-lsp, with types in the first answers after a file opens",
+      "category": "development"
+    },
+    {
       "name": "vue-lsp",
       "source": "./plugins/vue-lsp",
       "description": "Vue language server for code intelligence in .vue files, next to typescript-lsp: typescript-language-server with Vue's TypeScript plugin",

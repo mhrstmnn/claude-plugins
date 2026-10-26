@@ -9,7 +9,7 @@ import {
   isJsonObject,
   type JsonObject,
   MessageReader,
-} from "../../../plugins/vue-lsp/server/messages.ts";
+} from "../plugins/vue-lsp/server/messages.ts";
 
 export interface Diagnostic {
   readonly message: string;
@@ -110,13 +110,15 @@ export class LspClient {
     this.#send({ method, params });
   }
 
-  async initialize(rootPath: string): Promise<void> {
+  /** Sends initialize with the options a plugin's lspServers entry gives, as Claude Code does. */
+  async initialize(rootPath: string, initializationOptions?: JsonObject): Promise<void> {
     const rootUri = pathToFileURL(rootPath).href;
     await this.request("initialize", {
       processId: process.pid,
       rootUri,
       workspaceFolders: [{ uri: rootUri, name: "fixture" }],
       capabilities: { textDocument: { publishDiagnostics: {}, definition: {}, hover: {} } },
+      ...(initializationOptions === undefined ? {} : { initializationOptions }),
     });
     this.notify("initialized", {});
   }

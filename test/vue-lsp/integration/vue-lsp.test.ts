@@ -9,7 +9,7 @@ import path from "node:path";
 
 import { afterAll, beforeAll, describe, expect, test } from "vitest";
 
-import { LspClient } from "./lsp-client.ts";
+import { LspClient } from "../../lsp-client.ts";
 
 const repositoryRoot = path.resolve(import.meta.dirname, "../../..");
 const fixtureRoot = path.join(repositoryRoot, "test", "vue-lsp", "fixture");

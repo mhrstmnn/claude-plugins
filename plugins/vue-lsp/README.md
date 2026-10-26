@@ -2,7 +2,7 @@
 
 A [Claude Code](https://code.claude.com) plugin that gives Claude code intelligence in Vue single-file components: type errors in `<script setup>` and in template expressions right after an edit, go to definition, find references and hover, including into the `.ts` files a component uses.
 
-It serves `.vue` files only and complements the official `typescript-lsp` plugin, which serves `.ts` and `.js` files. Install both for full coverage in a Vue project.
+It serves `.vue` files only and complements a `typescript-lsp` plugin, which serves `.ts` and `.js` files: the official one, or [this marketplace's](../typescript-lsp/README.md), which includes types in its first answers. Install both for full coverage in a Vue project.
 
 ## Why a plugin of its own
 
@@ -19,7 +19,7 @@ claude plugin install vue-lsp@mhrstmnn
 
 Or in a session: `/plugin marketplace add mhrstmnn/claude-plugins`, then `/plugin install vue-lsp@mhrstmnn`. Restart Claude Code afterwards.
 
-For `.ts` and `.js` files, install the official `typescript-lsp` plugin too, with the typescript-language-server it needs on `PATH`. The two don't overlap: each claims its own file types, and this plugin's server starts only once Claude edits a `.vue` file. The `.vue` server still sees the project's `.ts` files, and picks up their edits from disk.
+For `.ts` and `.js` files, install a `typescript-lsp` plugin too, with the typescript-language-server it needs on `PATH`. The two don't overlap: each claims its own file types, and this plugin's server starts only once Claude edits a `.vue` file. The `.vue` server still sees the project's `.ts` files, and picks up their edits from disk.
 
 Requirements:
 

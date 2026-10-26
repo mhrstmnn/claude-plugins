@@ -26,6 +26,11 @@ Plugins for Claude Code, in a repository that is also their marketplace (`mhrstm
 
 - Bump `version` in a plugin's `plugin.json` with every change users should get. Claude Code updates an installed plugin only when its version changes.
 
+## typescript-lsp
+
+- A copy of Anthropic's official `typescript-lsp` config with `initializationOptions.tsserver.useSyntaxServer` set to `never`. Keep its command and file types in step with the official plugin.
+- Its integration test runs the server the manifest names, so it needs typescript-language-server and TypeScript 6 installed globally; CI installs them with npm.
+
 ## vue-lsp
 
 - `server/main.ts` is the entry point Claude Code starts, `server/runtime.ts` installs the dependencies into `CLAUDE_PLUGIN_DATA`, and `server/messages.ts` frames protocol messages and rewrites `initialize`. `server/runtime/package.json` pins what gets installed.
