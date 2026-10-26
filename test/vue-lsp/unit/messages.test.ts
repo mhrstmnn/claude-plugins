@@ -83,7 +83,10 @@ describe("addVueSupport", () => {
               languages: ["vue"],
             },
           ],
-          tsserver: { fallbackPath: "/data/runtime-1/node_modules/typescript/lib" },
+          tsserver: {
+            fallbackPath: "/data/runtime-1/node_modules/typescript/lib",
+            useSyntaxServer: "never",
+          },
         },
       },
     });
@@ -96,7 +99,11 @@ describe("addVueSupport", () => {
       params: {
         initializationOptions: {
           plugins: [otherPlugin],
-          tsserver: { fallbackPath: "/client/lib", logVerbosity: "verbose" },
+          tsserver: {
+            fallbackPath: "/client/lib",
+            useSyntaxServer: "auto",
+            logVerbosity: "verbose",
+          },
           preferences: { quoteStyle: "double" },
         },
       },
@@ -108,7 +115,11 @@ describe("addVueSupport", () => {
       otherPlugin,
       expect.objectContaining({ languages: ["vue"] }),
     ]);
-    expect(options["tsserver"]).toEqual({ fallbackPath: "/client/lib", logVerbosity: "verbose" });
+    expect(options["tsserver"]).toEqual({
+      fallbackPath: "/client/lib",
+      useSyntaxServer: "auto",
+      logVerbosity: "verbose",
+    });
     expect(options["preferences"]).toEqual({ quoteStyle: "double" });
   });
 });

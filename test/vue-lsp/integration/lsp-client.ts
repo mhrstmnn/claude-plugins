@@ -167,6 +167,13 @@ export class LspClient {
     });
   }
 
+  /** Returns the text of the hover at the position, or an empty string without one. */
+  async hoverText(uri: string, position: { line: number; character: number }): Promise<string> {
+    const result = await this.request("textDocument/hover", { textDocument: { uri }, position });
+    const contents = isJsonObject(result) ? result["contents"] : undefined;
+    return isJsonObject(contents) && typeof contents["value"] === "string" ? contents["value"] : "";
+  }
+
   async stop(): Promise<number | null> {
     const exited = new Promise<number | null>((resolve) => {
       this.#process.once("exit", resolve);

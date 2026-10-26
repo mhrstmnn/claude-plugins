@@ -37,6 +37,20 @@ function lineOf(text: string, needle: string): number {
 }
 
 describe("the Vue language server", () => {
+  // First, while the project is still loading: a syntax server would answer with `import x` only.
+  test("shows an import's type on hover right after opening a component", async () => {
+    const text = readFileSync(vueFile, "utf8");
+    const uri = client.open(vueFile, "vue", text);
+    const line = lineOf(text, "import { formatGreeting }");
+    const hover = await client.hoverText(uri, {
+      line,
+      character: text.split("\n")[line]?.indexOf("formatGreeting") ?? 0,
+    });
+
+    expect(hover).toContain("(alias) function formatGreeting(name: string): string");
+    client.close(uri);
+  });
+
   test("reports type errors in a component's script and template", async () => {
     const text = readFileSync(vueFile, "utf8")
       .replace("const props", 'const count: number = "three";\nconst props')

@@ -82,7 +82,9 @@ export function parseInitializeRequest(body: Buffer): JsonObject | undefined {
 /**
  * Registers @vue/typescript-plugin with typescript-language-server, which then lets tsserver
  * read .vue files, and names the bundled TypeScript as the fallback for workspaces without one.
- * Options the client sent stay, and a tsserver fallback the client chose wins.
+ * It also turns off the syntax server, which answers while the project loads but without types:
+ * a hover over an import would show `import x` instead of x's type, and Claude, unlike a person
+ * in an editor, doesn't ask again. Options the client sent stay, and its tsserver options win.
  */
 export function addVueSupport(request: JsonObject, runtime: RuntimePaths): JsonObject {
   const params = isJsonObject(request["params"]) ? request["params"] : {};
@@ -101,7 +103,11 @@ export function addVueSupport(request: JsonObject, runtime: RuntimePaths): JsonO
           ...plugins,
           { name: "@vue/typescript-plugin", location: runtime.pluginLocation, languages: ["vue"] },
         ],
-        tsserver: { fallbackPath: runtime.typescriptLibrary, ...tsserver },
+        tsserver: {
+          fallbackPath: runtime.typescriptLibrary,
+          useSyntaxServer: "never",
+          ...tsserver,
+        },
       },
     },
   };

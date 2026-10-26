@@ -39,6 +39,8 @@ The first start takes a few seconds longer and needs network access. Later start
 
 It then starts typescript-language-server and passes the protocol through, adding the Vue plugin and the fallback TypeScript to the `initialize` request. A project's own TypeScript serves it when it has a tsserver: TypeScript 5 and 6, and `typescript-native-bridge`. A project on TypeScript 7, which has no tsserver, gets the bundled TypeScript 6.
 
+It also turns off typescript-language-server's syntax server, which answers while a project loads but knows no types. A hover over an import would then show `import x` instead of x's type, and Claude, unlike a person in an editor, wouldn't ask again. Without it, the first answer waits until the project has loaded.
+
 ## Limitations
 
 - Go to definition on an imported function in a template also returns a helper type of Vue's generated template code, after the real definition.

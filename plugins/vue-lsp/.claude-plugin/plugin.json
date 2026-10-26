@@ -1,6 +1,6 @@
 {
   "name": "vue-lsp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "TypeScript and Vue language server for code intelligence in .ts, .js and .vue files: typescript-language-server with Vue's TypeScript plugin",
   "author": {
     "name": "Michael Horstmann"
