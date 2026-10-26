@@ -1,0 +1,15 @@
+{
+  "name": "mhrstmnn",
+  "owner": {
+    "name": "Michael Horstmann"
+  },
+  "description": "Michael Horstmann's plugins for Claude Code",
+  "plugins": [
+    {
+      "name": "vue-lsp",
+      "source": "./plugins/vue-lsp",
+      "description": "TypeScript and Vue language server for code intelligence in .ts, .js and .vue files: typescript-language-server with Vue's TypeScript plugin",
+      "category": "development"
+    }
+  ]
+}

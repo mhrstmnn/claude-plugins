@@ -1,0 +1,10 @@
+{
+  "name": "vue-lsp-runtime",
+  "private": true,
+  "description": "What the plugin installs into its data directory on first start. Changing a version installs a new runtime.",
+  "dependencies": {
+    "@vue/typescript-plugin": "3.3.13",
+    "typescript": "6.0.3",
+    "typescript-language-server": "6.0.2"
+  }
+}
