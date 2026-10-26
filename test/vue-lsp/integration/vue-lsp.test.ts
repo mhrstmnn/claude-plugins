@@ -1,6 +1,7 @@
 // Starts the plugin's server the way Claude Code does, with an empty data directory, so the run
 // covers the install from the registry, the proxy, and typescript-language-server with the Vue
-// plugin. The fixture has no TypeScript of its own, so the bundled one serves it.
+// plugin. The fixture has no TypeScript of its own, so the bundled one serves it, and it opens
+// only .vue files, the one file type the plugin claims.
 
 import { mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -83,16 +84,5 @@ describe("the Vue language server", () => {
     // code, after the real definition.
     expect(files[0]).toBe(path.join(fixtureRoot, "src", "greeting.ts"));
     client.close(uri);
-  });
-
-  test("serves plain TypeScript files as well", async () => {
-    const tsFile = path.join(fixtureRoot, "src", "main.ts");
-    const text = `${readFileSync(tsFile, "utf8")}export const wrong: string = 42;\n`;
-    const uri = client.open(tsFile, "typescript", text);
-
-    const diagnostics = await client.diagnostics(uri);
-    expect(diagnostics.map((diagnostic) => diagnostic.message)).toEqual([
-      "Type 'number' is not assignable to type 'string'.",
-    ]);
   });
 });

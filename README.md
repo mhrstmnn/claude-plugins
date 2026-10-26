@@ -2,9 +2,9 @@
 
 My plugins for [Claude Code](https://code.claude.com). The repository is also their marketplace, so Claude Code installs them straight from here.
 
-| Plugin                               | What it does                                                                                                                                      |
-| :----------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [vue-lsp](plugins/vue-lsp/README.md) | TypeScript and Vue language server: type errors right after an edit, go to definition, find references and hover in `.vue`, `.ts` and `.js` files |
+| Plugin                               | What it does                                                                                                                                             |
+| :----------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [vue-lsp](plugins/vue-lsp/README.md) | Vue language server, next to the official `typescript-lsp`: type errors right after an edit, go to definition, find references and hover in `.vue` files |
 
 ## Install
 

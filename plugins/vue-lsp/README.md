@@ -1,8 +1,8 @@
 # vue-lsp
 
-A [Claude Code](https://code.claude.com) plugin that gives Claude code intelligence in Vue single-file components: type errors in `<script setup>` and in template expressions right after an edit, go to definition, find references and hover, across `.vue`, `.ts` and `.js` files.
+A [Claude Code](https://code.claude.com) plugin that gives Claude code intelligence in Vue single-file components: type errors in `<script setup>` and in template expressions right after an edit, go to definition, find references and hover, including into the `.ts` files a component uses.
 
-It replaces the official `typescript-lsp` plugin. It serves TypeScript and JavaScript files the same way, plus `.vue` files.
+It serves `.vue` files only and complements the official `typescript-lsp` plugin, which serves `.ts` and `.js` files. Install both for full coverage in a Vue project.
 
 ## Why a plugin of its own
 
@@ -15,12 +15,11 @@ That plugin has to be registered by path in the `initialize` request. Claude Cod
 ```sh
 claude plugin marketplace add mhrstmnn/claude-plugins
 claude plugin install vue-lsp@mhrstmnn
-claude plugin disable typescript-lsp@claude-plugins-official   # if you have it
 ```
 
 Or in a session: `/plugin marketplace add mhrstmnn/claude-plugins`, then `/plugin install vue-lsp@mhrstmnn`. Restart Claude Code afterwards.
 
-Disable `typescript-lsp` because both plugins claim `.ts` and `.js` files, and the two would run side by side. `typescript-lsp` doesn't understand `.vue` files: in a `.ts` file that imports a component, it sees only the `*.vue` module shim, where this plugin sees the component's real props. Outside Vue projects you lose nothing, since this plugin serves TypeScript the same way.
+For `.ts` and `.js` files, install the official `typescript-lsp` plugin too, with the typescript-language-server it needs on `PATH`. The two don't overlap: each claims its own file types, and this plugin's server starts only once Claude edits a `.vue` file. The `.vue` server still sees the project's `.ts` files, and picks up their edits from disk.
 
 Requirements:
 
@@ -43,6 +42,8 @@ It also turns off typescript-language-server's syntax server, which answers whil
 
 ## Limitations
 
+- `typescript-lsp` serves the `.ts` files, so where a `.ts` file imports a component, it sees the `*.vue` module shim instead of the component's props.
+- A Vue project runs two TypeScript servers once Claude has edited both kinds of files, one per plugin.
 - Go to definition on an imported function in a template also returns a helper type of Vue's generated template code, after the real definition.
 - What only Vue's own language server provides is missing, such as HTML and CSS completion in templates. Claude rarely needs it.
 - Tested on macOS and Linux. Windows should work but is untested.

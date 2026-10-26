@@ -1,7 +1,7 @@
 {
   "name": "vue-lsp",
-  "version": "0.1.1",
-  "description": "TypeScript and Vue language server for code intelligence in .ts, .js and .vue files: typescript-language-server with Vue's TypeScript plugin",
+  "version": "0.2.0",
+  "description": "Vue language server for code intelligence in .vue files, next to typescript-lsp: typescript-language-server with Vue's TypeScript plugin",
   "author": {
     "name": "Michael Horstmann"
   },
@@ -14,14 +14,6 @@
       "command": "node",
       "args": ["${CLAUDE_PLUGIN_ROOT}/server/main.ts"],
       "extensionToLanguage": {
-        ".ts": "typescript",
-        ".tsx": "typescriptreact",
-        ".mts": "typescript",
-        ".cts": "typescript",
-        ".js": "javascript",
-        ".jsx": "javascriptreact",
-        ".mjs": "javascript",
-        ".cjs": "javascript",
         ".vue": "vue"
       },
       "startupTimeout": 300000
