@@ -25,6 +25,7 @@ Plugins for Claude Code, in a repository that is also their marketplace (`mhrstm
 ## Every plugin
 
 - Bump `version` in a plugin's `plugin.json` with every change users should get. Claude Code updates an installed plugin only when its version changes.
+- Release every version bump once it's pushed: a signed tag `<plugin>-v<version>` on that commit, and a GitHub release titled `<plugin> <version>` whose notes say what changed and what users must do. The plugins share the repository's one "Latest" badge, which goes to the newest release.
 
 ## typescript-lsp
 
